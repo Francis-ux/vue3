@@ -6,7 +6,7 @@
     <hr />
     {{ newTag }}
     <input type="text" v-model.trim="newTag" @keydown.enter="addNewTag" @keydown.delete="removeLastTag"
-        @keydown.tab.prevent="addNewTag" :class="{ 'tag-exists': tags.includes(newTag) }" />
+        @keydown.tab.prevent="addNewTag" :class="{ 'tag-exists': isTagExists }" />
 
 </template>
 
@@ -20,9 +20,15 @@ export default {
         }
     },
 
+    computed: {
+        isTagExists() {
+            return this.tags.includes(this.newTag)
+        }
+    },
+
     methods: {
         addNewTag() {
-            if (this.newTag) {
+            if (this.newTag && !this.isTagExists) {
                 this.tags.push(this.newTag)
                 this.newTag = ""
             }
