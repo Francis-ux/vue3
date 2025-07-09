@@ -17,8 +17,8 @@
 export default {
     data() {
         return {
-            tags: ["Vue", "React", "Angular"],
-            newTag: "Preact"
+            tags: [...this.selectedTags],
+            newTag: ""
         }
     },
 
@@ -28,6 +28,13 @@ export default {
                 this.newTag = this.newTag.slice(0, -1)
                 this.addNewTag();
             }
+        }
+    },
+
+    props: {
+        selectedTags: {
+            type: Array,
+            default: () => []
         }
     },
 

@@ -1,16 +1,21 @@
 <script>
-import TagsInput from "./components/TagsInput.vue"
 
 export default {
-  components: {
-    // TagsInput
+  data: () => ({
+    jsFrameworks: ["react.js", "vue.js", "angular"]
+  }),
+
+  mounted() {
+    setTimeout(() => {
+      this.jsFrameworks.push("svelte.js")
+    }, 3000)
   }
 }
 </script>
 
 <template>
   <h1>Hello World</h1>
-  <TagsInput></TagsInput>
+  <TagsInput :selectedTags="jsFrameworks"></TagsInput>
   <!-- Or use the shorthand -->
   <!-- <TagsInput /> -->
 </template>
