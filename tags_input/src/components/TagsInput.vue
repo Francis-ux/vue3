@@ -44,17 +44,21 @@ export default {
         }
     },
 
+    emits: ["change"],
+
     methods: {
         addNewTag() {
             if (this.newTag && !this.isTagExists) {
                 this.tags.push(this.newTag)
                 this.newTag = ""
+                this.$emit('change', this.tags);
             }
         },
 
 
         removeTag(index) {
             this.tags.splice(index, 1)
+            this.$emit('change', this.tags);
         },
 
         removeLastTag() {

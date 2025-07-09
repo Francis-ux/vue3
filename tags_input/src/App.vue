@@ -2,20 +2,24 @@
 
 export default {
   data: () => ({
-    jsFrameworks: ["react.js", "vue.js", "angular"]
+    jsFrameworks: ["react.js", "vue.js", "angular"],
+    backendFrameworks: []
   }),
-
-  mounted() {
-    setTimeout(() => {
-      this.jsFrameworks.push("svelte.js")
-    }, 3000)
+  methods: {
+    handleChange(tags) {
+      this.jsFrameworks = [...tags]
+    }
   }
 }
 </script>
 
 <template>
-  <h1>Hello World</h1>
-  <TagsInput :selectedTags="jsFrameworks"></TagsInput>
+  <h1>Your favorite frameworks</h1>
+  <div>{{ jsFrameworks }}</div>
+  <TagsInput :selectedTags="jsFrameworks" @change="handleChange"></TagsInput>
+
+  <div>{{ backendFrameworks }}</div>
+  <TagsInput :selectedTags="backendFrameworks" @change="backendFrameworks = [...$event]"></TagsInput>
   <!-- Or use the shorthand -->
   <!-- <TagsInput /> -->
 </template>
